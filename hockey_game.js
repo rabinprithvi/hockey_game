@@ -51,6 +51,7 @@ function init()
     initGround();
     appendChildren();
     addListeners();
+    
 }
 
 //************************* Director code  *********************************
@@ -104,6 +105,8 @@ function initScene()
 
      hockey_stick = new lime.Sprite().setSize(200,200).setFill('hockey_stick1.png').setPosition(450,600);
 
+     triangle = new lime.Polygon(340,365,490,365,508,635).setStroke(1,'#ffffff');
+
 
 
     //***** create layer and add sprites
@@ -135,6 +138,8 @@ function initScene()
 
     groundLayer.appendChild(score);
 
+    groundLayer.appendChild(triangle);
+
     
 }
 //************************* add objects to Scene *********************************
@@ -149,6 +154,8 @@ function appendChildren()
     director.replaceScene(scene);
 
 }
+
+
 
 //************************* Event Listeners are added here *********************************
 
@@ -219,6 +226,8 @@ function moveToPosition(e)
         clapSound.play();
       }
 
+      goog.events.unlisten(hockey_stick, [ 'touchstart','mousedown' ] , moveToPosition);
+
 };
 
 function resetScene()
@@ -227,6 +236,7 @@ function resetScene()
     clapSound.stop();
     ball.setPosition(508,635);
     ball.setScale(1);
+    addListeners();
 }
 
 
