@@ -31,6 +31,7 @@ var point;
 var score;
 var strikeSound;
 var clapSound;
+var trianlge;
 
 //************************* Entry Point *********************************
 
