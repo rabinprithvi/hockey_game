@@ -110,7 +110,8 @@ function showScore()
 
 function showTriangle()
 {    
-    triangle = new Triangle();
+    triangle = new hockey.TriangleShape();
+    groundLayer.appendChild(triangle);
     
     var angle_one = triangle.giveAngle(p3,p4,p5,p6);  
     var angle_two = triangle.giveAngle(p1,p2,p5,p6);

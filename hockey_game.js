@@ -18,8 +18,10 @@ goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.RotateBy');
 goog.require('lime.GlossyButton');
 goog.require('lime.transitions.Dissolve');
-goog.require('lime.transitions.SlideInRight');
+goog.require('lime.transitions.SlideInRight'); 
 
+goog.require('hockey.TriangleShape');
+goog.require('hockey.SplashScene');
 
 
 
@@ -28,6 +30,7 @@ goog.require('lime.transitions.SlideInRight');
 
 var director;
 var scene;
+ var splashScene;
 var groundLayer;
 var ball;
 var hockey_stick;
@@ -37,6 +40,7 @@ var point = 0;
 var score;
 var trianlge;
 var num;
+
 
 //************************* Entry Point *********************************
 
@@ -82,49 +86,26 @@ function initSceneLayer()
     scene = new lime.Scene();
     groundLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
     scene.appendChild(groundLayer);
-    //scene.appendChild(groundLayer);
-  //  director.replaceScene(scene);
- }
- var splashLayer;
- var splashScene;
+}
+ 
+
 
 function initSplashScreen()
 {
 
-    splashScene = new lime.Scene();
-
-    splashLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
-    scene.appendChild(splashLayer);
-
-    var bg = new lime.RoundedRect().setSize(1000, 300).setPosition(0, 150).setFill('#333333').setRadius(50).setAnchorPoint(0,0)
-    splashLayer.appendChild(bg);
-
-    var playBtn = new lime.GlossyButton('Play').setSize(250, 70).setPosition(625,300).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
-    splashLayer.appendChild(playBtn)
-
-     var icon = new lime.Sprite().setSize(200,200).setFill('images/hockeylogo.png').setPosition(150,200).setAnchorPoint(0,0);
-    splashLayer.appendChild(icon);
-
-    goog.events.listen(playBtn,[ 'touchstart','mousedown' ] , startPlay);
-
-    splashScene.appendChild(splashLayer);
-
-     director.replaceScene(splashScene);
+    splashScene = new hockey.SplashScene();    
+    goog.events.listen(splashScene.playBtn,[ 'touchstart','mousedown' ] , startPlay);
+     director.replaceScene(splashScene);      
  }
+ 
 
+//*********************Event handling ***********************************
  function startPlay()
  {
    director.replaceScene(scene,lime.transitions.SlideInRight,1);
-    groundLayer.setDirty(255);
-   // alert("hi")
-    //director.popScene();
-    //director.replaceScene(scene,lime.transitions.Dissolve,2);
-            
-   // scene.removeChild(splashLayer);
+    groundLayer.setDirty(255); 
     
- }
- 
- 
+ } 
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('hockey_game.start', hockey_game.start);
