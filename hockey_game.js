@@ -1,45 +1,21 @@
 //set main namespace
 goog.provide('hockey_game');
 
-
-
-
 //get requirements
 goog.require('lime.Director');
 goog.require('lime.Scene');
-goog.require('lime.Layer');
-goog.require('lime.fill.LinearGradient');
-goog.require('lime.RoundedRect');
-goog.require('lime.Polygon');
-goog.require('lime.Circle');
-goog.require('lime.animation.Spawn');
-goog.require('lime.animation.MoveTo');
-goog.require('lime.animation.ScaleTo');
-goog.require('lime.animation.RotateBy');
-goog.require('lime.GlossyButton');
-goog.require('lime.transitions.Dissolve');
 goog.require('lime.transitions.SlideInRight'); 
 
-goog.require('hockey.TriangleShape');
+//custom classes
 goog.require('hockey.SplashScene');
-
-
-
+goog.require('hockey.SceneOne');
 
 //************************* Global Variables  *********************************
 
 var director;
-var scene;
+var sceneOne;
  var splashScene;
-var groundLayer;
-var ball;
-var hockey_stick;
-var replayBtn;
-var resetBtn;
-var point = 0;
-var score;
-var trianlge;
-var num;
+
 
 
 //************************* Entry Point *********************************
@@ -47,65 +23,40 @@ var num;
 hockey_game.start = function()
 {
 
-    init();
+    initDirector();    
+    initScenes();
+    addListeners();    
 }
 
-//************************* Initial Function calls  *********************************
-
-
-function init()
-{
-
-    initDirector();   
-    initSceneLayer();
-    initSplashScreen()
-    createUI(); //UI is handled by display.js   
-    createAudio();//audio is handled by audio.js
-    
-    addEventListeners();//events are handled by eventListener.js
-    
-    
-}
 
 //************************* Director code  *********************************
-
-
 function initDirector()
 {
     director =  new lime.Director(document.body,1024,768);
     director.makeMobileWebAppCapable();
     director.setDisplayFPS(false);
 }
-
-//************************* Scene code  *********************************
-
-
-function initSceneLayer()
+//************************* Scene code  ********************************
+function initScenes()
 {
-
-    scene = new lime.Scene();
-    groundLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
-    scene.appendChild(groundLayer);
-}
- 
-
-
-function initSplashScreen()
-{
-
-    splashScene = new hockey.SplashScene();    
-    goog.events.listen(splashScene.playBtn,[ 'touchstart','mousedown' ] , startPlay);
-     director.replaceScene(splashScene);      
- }
- 
-
-//*********************Event handling ***********************************
- function startPlay()
- {
-   director.replaceScene(scene,lime.transitions.SlideInRight,1);
-    groundLayer.setDirty(255); 
+    sceneOne = new hockey.SceneOne();
+    splashScene = new hockey.SplashScene();   
+    director.replaceScene(splashScene);  
     
- } 
+}
+//*********************Event Listeners ***********************************
+function addListeners()
+{    
+        goog.events.listen(splashScene.playBtn,[ 'touchstart','mousedown' ] , showSceneOne);         
+ }
+//*********************Event handling ***********************************
+ function showSceneOne()
+ {
+   director.replaceScene(sceneOne, lime.transitions.SlideInRight, 1);
+    sceneOne.groundLayer.setDirty(255); 
+    
+ }  
+ //*********************End ***********************************
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('hockey_game.start', hockey_game.start);

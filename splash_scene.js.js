@@ -14,7 +14,7 @@ hockey.SplashScene = function() {
      
 
     var splashLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
-    scene.appendChild(splashLayer);
+    this.appendChild(splashLayer);
 
     var bg = new lime.RoundedRect().setSize(1000, 300).setPosition(0, 150).setFill('#333333').setRadius(50).setAnchorPoint(0,0)
     splashLayer.appendChild(bg);

@@ -20,6 +20,8 @@ var one,two,three,four,five,six,seven,eight,nine,zero,undo;
 
  function createUI()
  { 
+     
+     createLayer();
    
    showSky();
     
@@ -45,6 +47,12 @@ var one,two,three,four,five,six,seven,eight,nine,zero,undo;
     
  }
  //******************************private calls ************************
+ 
+ function createLayer()
+ {
+     groundLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
+    scene.appendChild(groundLayer);
+ }
  
  function showGround()
 {
