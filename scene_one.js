@@ -16,7 +16,7 @@ goog.require('hockey.Striker');
 goog.require('hockey.Ball');
 goog.require('hockey.TriangleShape');
 goog.require('hockey.NumberButtons');
-
+goog.require('hockey.AngleText');
 
 hockey.SceneOne = function() {
     
@@ -42,6 +42,9 @@ hockey.SceneOne = function() {
 
     var numbers = new hockey.NumberButtons();
     this.groundLayer.appendChild(numbers);
+
+     var angle_txt = new hockey.AngleText();
+    this.groundLayer.appendChild(angle_txt);
     
     
     
