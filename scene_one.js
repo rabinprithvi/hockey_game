@@ -8,9 +8,13 @@ goog.provide('hockey.SceneOne');
 
 goog.require('lime.Scene');
 goog.require('lime.Layer');
-goog.require('lime.RoundedRect');
-goog.require('lime.GlossyButton');
 goog.require('lime.Sprite');
+
+goog.require('hockey.PlayArea');
+goog.require('hockey.Goalie');
+goog.require('hockey.Striker');
+goog.require('hockey.Ball');
+goog.require('hockey.TriangleShape');
 
 
 hockey.SceneOne = function() {
@@ -20,8 +24,24 @@ hockey.SceneOne = function() {
     this.groundLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
     
     
-    var goalPost = new lime.Sprite().setSize(400,200).setStroke(5,'#ff0000').setPosition(495,360);
-    this.groundLayer.appendChild(goalPost);
+    var playArea = new hockey.PlayArea();
+    this.groundLayer.appendChild(playArea);
+    
+    var goalie = new hockey.Goalie();
+    this.groundLayer.appendChild(goalie);
+    
+    var striker = new hockey.Striker();
+    this.groundLayer.appendChild(striker);
+    
+    var ball = new hockey.Ball();
+    this.groundLayer.appendChild(ball);
+    
+     var triangle = new hockey.TriangleShape();
+    this.groundLayer.appendChild(triangle);
+    
+    
+    
+    
     
     this.appendChild(this.groundLayer);
     

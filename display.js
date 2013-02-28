@@ -70,8 +70,7 @@ function showSky()
 
 function showGoalPost()
 {
-        var goalPost = new lime.Sprite().setSize(400,200).setStroke(5,'#ffffff').setPosition(495,360);
-        groundLayer.appendChild(goalPost);
+        
 }
 
 function showGoalie()
