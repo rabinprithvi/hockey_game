@@ -15,6 +15,7 @@ goog.require('hockey.Goalie');
 goog.require('hockey.Striker');
 goog.require('hockey.Ball');
 goog.require('hockey.TriangleShape');
+goog.require('hockey.NumberButtons');
 
 
 hockey.SceneOne = function() {
@@ -36,8 +37,11 @@ hockey.SceneOne = function() {
     var ball = new hockey.Ball();
     this.groundLayer.appendChild(ball);
     
-     var triangle = new hockey.TriangleShape();
+    var triangle = new hockey.TriangleShape();
     this.groundLayer.appendChild(triangle);
+
+    var numbers = new hockey.NumberButtons();
+    this.groundLayer.appendChild(numbers);
     
     
     
