@@ -9,13 +9,32 @@ goog.require('lime.Sprite');
 goog.require('lime.Label');
 
 
-hockey.AngleText = function() {
+hockey.AngleText = function() 
+{
     
     goog.base(this) ;
     
-    var score = new lime.Label().setPosition(650,650).setFontSize(24).setFontColor('#c00').setFill('#ccc');
-    this.appendChild(score);
+    var score;
+    
+    this.score = new lime.Label().setFontSize(24).setFontColor('#c00').setFill('#ccc');
+    this.appendChild(this.score);
+    
+    //*********** public functions ************************
+    
+    hockey.AngleText.prototype.setPosition = function (x,y)
+    {
+        this.score.setPosition(x,y);
+    }   
+
+    hockey.AngleText.prototype.setText = function (text)
+    {
+        this.score.setText(text);
+    }
+    
+    
 }
+
+
 goog.inherits(hockey.AngleText, lime.Sprite) ;
     
 
