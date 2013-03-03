@@ -5,7 +5,7 @@
 
 
 goog.provide('hockey.Striker');
-goog.require('lime.Sprite');
+goog.require('lime.Layer');
 
 
 hockey.Striker = function() {
@@ -14,8 +14,18 @@ hockey.Striker = function() {
     
     var hockey_stick = new lime.Sprite().setSize(200,200).setFill('images/hockey_stick.png').setPosition(450,600);
       this.appendChild(hockey_stick);
+      
+       
+      
+      
+
 }
-goog.inherits(hockey.Striker, lime.Sprite) ;
+         
+
+
+goog.inherits(hockey.Striker, lime.Layer) ;
+
+
     
 
 

@@ -21,7 +21,7 @@ function loadClapAudio()
 
 function startStrikeAudio()
 {
-    strikeSound.play();
+    //strikeSound.play();
 }
 
 function startClapAudio()
@@ -40,7 +40,6 @@ function stopClapAudio()
     clapSound.stop(); 
 }
 
-//goog.exportSymbol('hockey_game.start', hockey_game.start);
 
 
 
