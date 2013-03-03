@@ -106,6 +106,7 @@ hockey.SceneOne = function()
 
       
 }
+goog.inherits(hockey.SceneOne, lime.Scene) ;
 
 function addListener()
 {
@@ -248,7 +249,7 @@ function resetScene()
     addListener();
 }
 
-goog.inherits(hockey.SceneOne, lime.Scene) ;
+
     
 
 
