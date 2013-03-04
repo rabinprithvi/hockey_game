@@ -15,6 +15,7 @@ goog.require('lime.animation.RotateBy');
 goog.require('lime.animation.ScaleTo'); 
 goog.require('lime.Label');
 goog.require('lime.GlossyButton');
+goog.require('lime.animation.FadeTo')
 
 goog.require('hockey.PlayArea');
 goog.require('hockey.Goalie');
@@ -22,6 +23,7 @@ goog.require('hockey.Striker');
 goog.require('hockey.Ball');
 goog.require('hockey.TriangleShape');
 goog.require('hockey.NumberButtons');
+goog.require('hockey.Notice');
 
 
 var striker;
@@ -39,6 +41,8 @@ var num = 0;
 var point = 0;
 
 var triangle;
+var notice;
+var isGoal;
 
 hockey.SceneOne = function() 
 {
@@ -57,7 +61,7 @@ hockey.SceneOne = function()
     var goalie = new hockey.Goalie();
     this.groundLayer.appendChild(goalie);
     
-    striker = new hockey.Striker();
+    striker = new hockey.Striker(450,600);
     this.groundLayer.appendChild(striker);
     
     var ball = new hockey.Ball();
@@ -69,12 +73,14 @@ hockey.SceneOne = function()
    var numbers = new hockey.NumberButtons();
    this.groundLayer.appendChild(numbers);   
 
-    score = new lime.Label().setPosition(650,650).setText('0').setFontSize(24).setFontColor('#c00').setFill('#ccc');
-    this.groundLayer.appendChild(score);
+    
 
     var resetBtn = new lime.GlossyButton('Reset').setSize(150, 38).setPosition(650,600).setRenderer(lime.Renderer.CANVAS);
     this.groundLayer.appendChild(resetBtn);
-     
+
+    notice = new hockey.Notice().setPosition(300, 400).setHidden(true);
+    this.groundLayer.appendChild(notice);
+
     var angle_one = triangle.giveAngle(p3,p4,p5,p6);  
     var angle_two =     triangle.giveAngle(p1,p2,p5,p6);
     triangle.setAngleText_1(angle_one);
@@ -101,6 +107,7 @@ hockey.SceneOne = function()
    goog.events.listen(numbers.undo,[ 'touchstart','mousedown' ] , resetText);
 
    goog.events.listen(resetBtn,[ 'touchstart','mousedown' ] , resetScene);
+   //goog.events.listenOnce(this, ['touchstart', 'mousedown'], resetScene, false, this);
 
    addListener();
 
@@ -117,6 +124,29 @@ function addListener()
 function removeListener()
 {
     goog.events.unlisten(striker, [ 'touchstart','mousedown' ] , moveToPosition);
+    notice.setOpacity(1); 
+    notice.setHidden(false);      
+
+      if(isGoal == false)
+      {
+        notice.title.setText("Wrong Answer ! Try Again")
+      }
+      else
+      {
+        notice.title.setText("That's a Goal!!! ")
+      }
+
+     notice.score.setText("Score : " + point)
+      
+   
+    var show = new lime.animation.FadeTo(0).setDuration(2);
+    goog.events.listen(show,lime.animation.Event.STOP,function(){
+    addListener();
+})
+    notice.runAction(show);
+
+    
+     resetScene();
 }
 
 function moveToPosition()
@@ -130,12 +160,14 @@ function calculatePoints()
    if(triangle.getAngleText_3() == 3 && triangle.getAngleText_4() == 0)
     {
         num = 335;
+        isGoal = true;
         point++;
     }
     else
     {
         num  = 495;
-        point--;
+        isGoal = false;
+        
     }
 
 }
@@ -246,7 +278,8 @@ function resetScene()
     ball.setPosition(508,635);
     ball.setScale(1);
     resetText();
-    addListener();
+   // addListener();
+    isGoal = false;
 }
 
 
