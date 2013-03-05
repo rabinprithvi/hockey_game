@@ -194,12 +194,7 @@ function  runAnimation()
      
       ball.runAction(anim);
 
-      //score.setText(point);
-
-      if(num == 335 )
-      {
-       // startClapAudio();
-      }
+      
 
 
 }

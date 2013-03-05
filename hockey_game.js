@@ -2,6 +2,7 @@
 goog.provide('hockey_game');
 
 //get requirements
+var imglder = goog.ImageLoader;
 goog.require('lime.Director');
 goog.require('lime.Scene');
 goog.require('lime.transitions.SlideInRight'); 
