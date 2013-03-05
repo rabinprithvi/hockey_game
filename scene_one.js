@@ -24,6 +24,7 @@ goog.require('hockey.Ball');
 goog.require('hockey.TriangleShape');
 goog.require('hockey.NumberButtons');
 goog.require('hockey.Notice');
+goog.require('hockey.Timer');
 
 
 var striker;
@@ -89,6 +90,8 @@ hockey.SceneOne = function()
     triangle.setAngleText_3("?");
     triangle.setAngleText_4("?");
 
+    this.timer = new hockey.Timer();
+    this.groundLayer.appendChild(this.timer);
 
     this.appendChild(this.groundLayer);
     
@@ -118,8 +121,10 @@ goog.inherits(hockey.SceneOne, lime.Scene) ;
 function addListener()
 {
        goog.events.listen(striker, [ 'touchstart','mousedown' ] , moveToPosition);
-
+       hockey.Timer.startTimer();
 }
+
+
 
 function removeListener()
 {
@@ -280,6 +285,19 @@ function resetScene()
     resetText();
    // addListener();
     isGoal = false;
+}
+
+hockey.SceneOne.showNotice = function()
+{
+  removeListener();
+  notice.setOpacity(1); 
+  notice.setHidden(false);       
+  notice.title.setText("Timer Over ! Try Again!!");
+
+  var show = new lime.animation.FadeTo(0).setDuration(2);
+    goog.events.listen(show,lime.animation.Event.STOP,function(){
+    addListener();
+})
 }
 
 
