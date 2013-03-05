@@ -27,7 +27,23 @@ hockey.Timer.startTimer = function()
 	   timerText.setText(num);
 	   if(num == 0 )
 	   {
-	   		hockey.SceneOne.showNotice();
+	   		if(!timerText.setHidden(true))
+	   		{
+	   			hockey.SceneOne.showNotice();
+	   			timerText.setHidden(true);
+	   		}
+	   		else
+	   		{
+	   			lime.scheduleManager.unschedule();
+	   		}
+	   		
 	   }
 	},this,1000,6);
+}
+
+hockey.Timer.sethide = function()
+{
+	timerText.setText('0');
+	timerText.setHidden(true);
+	lime.scheduleManager.unschedule();
 }

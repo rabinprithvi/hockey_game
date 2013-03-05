@@ -39,7 +39,7 @@ function initDirector()
 //************************* Scene code  ********************************
 function initScenes()
 {
-    sceneOne = new hockey.SceneOne();
+    
     splashScene = new hockey.SplashScene();   
     director.replaceScene(splashScene);  
     
@@ -52,6 +52,7 @@ function addListeners()
 //*********************Event handling ***********************************
  function showSceneOne()
  {
+    sceneOne = new hockey.SceneOne();
    director.replaceScene(sceneOne, lime.transitions.SlideInRight, 1);
     sceneOne.groundLayer.setDirty(255); 
     

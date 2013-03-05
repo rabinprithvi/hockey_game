@@ -25,6 +25,8 @@ goog.require('hockey.TriangleShape');
 goog.require('hockey.NumberButtons');
 goog.require('hockey.Notice');
 goog.require('hockey.Timer');
+goog.require('lime.scheduleManager');
+
 
 
 var striker;
@@ -76,8 +78,8 @@ hockey.SceneOne = function()
 
     
 
-    var resetBtn = new lime.GlossyButton('Reset').setSize(150, 38).setPosition(650,600).setRenderer(lime.Renderer.CANVAS);
-    this.groundLayer.appendChild(resetBtn);
+    /*var resetBtn = new lime.GlossyButton('Reset').setSize(150, 38).setPosition(650,600).setRenderer(lime.Renderer.CANVAS);
+    this.groundLayer.appendChild(resetBtn);*/
 
     notice = new hockey.Notice().setPosition(300, 400).setHidden(true);
     this.groundLayer.appendChild(notice);
@@ -109,7 +111,7 @@ hockey.SceneOne = function()
    goog.events.listen(numbers.zero,[ 'touchstart','mousedown' ] , onZeroClick);
    goog.events.listen(numbers.undo,[ 'touchstart','mousedown' ] , resetText);
 
-   goog.events.listen(resetBtn,[ 'touchstart','mousedown' ] , resetScene);
+   //goog.events.listen(resetBtn,[ 'touchstart','mousedown' ] , resetScene);
    //goog.events.listenOnce(this, ['touchstart', 'mousedown'], resetScene, false, this);
 
    addListener();
@@ -121,7 +123,7 @@ goog.inherits(hockey.SceneOne, lime.Scene) ;
 function addListener()
 {
        goog.events.listen(striker, [ 'touchstart','mousedown' ] , moveToPosition);
-       hockey.Timer.startTimer();
+      // hockey.Timer.startTimer();
 }
 
 
@@ -156,6 +158,7 @@ function removeListener()
 
 function moveToPosition()
 {
+    hockey.Timer.sethide();
     calculatePoints();
     runAnimation();
 }
@@ -191,7 +194,7 @@ function  runAnimation()
      
       ball.runAction(anim);
 
-      score.setText(point);
+      //score.setText(point);
 
       if(num == 335 )
       {
@@ -297,7 +300,9 @@ hockey.SceneOne.showNotice = function()
   var show = new lime.animation.FadeTo(0).setDuration(2);
     goog.events.listen(show,lime.animation.Event.STOP,function(){
     addListener();
+          
 })
+
 }
 
 
