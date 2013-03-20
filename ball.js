@@ -13,7 +13,7 @@ hockey.Ball = function() {
     
     goog.base(this) ;
     
-    ball = new lime.Circle().setSize(20,20).setFill('images/glossyBall.png').setPosition(508,635);
+    ball = new lime.Circle().setSize(40,40).setFill('images/ball.png').setPosition(508,550);
     this.appendChild(ball);
 }
 goog.inherits(hockey.Ball, lime.Sprite) ;

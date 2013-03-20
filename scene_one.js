@@ -32,12 +32,12 @@ goog.require('lime.scheduleManager');
 var striker;
 var score;
 
-var p1 = 335;
-var p2 = 365;
+var p1 = 285;
+var p2 = 276;
 var p3 = 490;
-var p4 = 365;
+var p4 = 276;
 var p5 = 490;
-var p6 = 635;
+var p6 = 550;
 
 var number = 0;
 var num = 0;
@@ -64,7 +64,7 @@ hockey.SceneOne = function()
     var goalie = new hockey.Goalie();
     this.groundLayer.appendChild(goalie);
     
-    striker = new hockey.Striker(450,600);
+    striker = new hockey.Striker(485,495);
     this.groundLayer.appendChild(striker);
     
     var ball = new hockey.Ball();
@@ -165,9 +165,9 @@ function moveToPosition()
 
 function calculatePoints()
 {
-   if(triangle.getAngleText_3() == 3 && triangle.getAngleText_4() == 0)
+   if(triangle.getAngleText_3() == 2 && triangle.getAngleText_4() == 7)
     {
-        num = 335;
+        num = 285;
         isGoal = true;
         point++;
     }
@@ -184,7 +184,7 @@ function  runAnimation()
 {
 
     var anim = new lime.animation.Spawn(
-                                            new lime.animation.MoveTo(num,365).setDuration(1),
+                                            new lime.animation.MoveTo(num,286).setDuration(1),
                                             new lime.animation.ScaleTo(0.5).setDuration(1),
                                             new lime.animation.RotateBy(1000).setDuration(1)
               
@@ -278,7 +278,7 @@ function resetScene()
 {
    // stopStrikeAudio();
     //stopClapAudio();
-    ball.setPosition(508,635);
+    ball.setPosition(508,550);
     ball.setScale(1);
     resetText();
    // addListener();

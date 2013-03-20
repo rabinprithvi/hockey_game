@@ -56,7 +56,7 @@ hockey.TriangleShape = function(p1,p2,p3,p4,p5,p6)
 
     hockey.TriangleShape.prototype.setAngleText_3 = function(text)
     {
-        this.angleText_3 = new lime.Label().setPosition(p5 +20, p6 - 20).setText(text).setFontSize(24).setFontColor('#c00');
+        this.angleText_3 = new lime.Label().setPosition(p5 + 50, p6 - 20).setText(text).setFontSize(24).setFontColor('#c00');
          this.appendChild(this.angleText_3);
         this.angleText_3.setText(text);
     }
@@ -64,7 +64,7 @@ hockey.TriangleShape = function(p1,p2,p3,p4,p5,p6)
 
     hockey.TriangleShape.prototype.setAngleText_4 = function(text)
     {
-        this.angleText_4 = new lime.Label().setPosition(p5 +35, p6 - 20).setText(text).setFontSize(24).setFontColor('#c00');
+        this.angleText_4 = new lime.Label().setPosition(p5 +65, p6 - 20).setText(text).setFontSize(24).setFontColor('#c00');
          this.appendChild(this.angleText_4);
         this.angleText_4.setText(text);
     }
