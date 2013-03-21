@@ -9,9 +9,9 @@ hockey.Timer = function() {
     goog.base(this) ;
     
     timerText = new lime.Label().setPosition(508,735).setText('5').setFontSize(40).setFontColor('ffffff')
-     this.appendChild(timerText);  
+    //this.appendChild(timerText);  
 
-     hockey.Timer.startTimer();
+    hockey.Timer.startTimer();
 
      
 

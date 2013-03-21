@@ -33,7 +33,7 @@ var striker;
 var score;
 
 var p1 = 285;
-var p2 = 276;
+var p2 = 200;
 var p3 = 490;
 var p4 = 276;
 var p5 = 490;
@@ -110,6 +110,7 @@ hockey.SceneOne = function()
    goog.events.listen(numbers.nine,[ 'touchstart','mousedown' ] , onNineClick);
    goog.events.listen(numbers.zero,[ 'touchstart','mousedown' ] , onZeroClick);
    goog.events.listen(numbers.undo,[ 'touchstart','mousedown' ] , resetText);
+   goog.events.listen(numbers.enter,[ 'touchstart','mousedown' ] , moveToPosition);
 
    //goog.events.listen(resetBtn,[ 'touchstart','mousedown' ] , resetScene);
    //goog.events.listenOnce(this, ['touchstart', 'mousedown'], resetScene, false, this);
@@ -165,7 +166,7 @@ function moveToPosition()
 
 function calculatePoints()
 {
-   if(triangle.getAngleText_3() == 2 && triangle.getAngleText_4() == 7)
+   if(triangle.getAngleText_3() == 3&& triangle.getAngleText_4() == 0)
     {
         num = 285;
         isGoal = true;
@@ -173,6 +174,7 @@ function calculatePoints()
     }
     else
     {
+        num = triangle.giveAngle(p5,p6,triangle.getAngleText_3(),triangle.getAngleText_4());  
         num  = 495;
         isGoal = false;
         
@@ -184,7 +186,7 @@ function  runAnimation()
 {
 
     var anim = new lime.animation.Spawn(
-                                            new lime.animation.MoveTo(num,286).setDuration(1),
+                                            new lime.animation.MoveTo(num,200).setDuration(1),
                                             new lime.animation.ScaleTo(0.5).setDuration(1),
                                             new lime.animation.RotateBy(1000).setDuration(1)
               
